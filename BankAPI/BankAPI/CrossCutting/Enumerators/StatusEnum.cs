@@ -1,14 +1,14 @@
 ﻿namespace BankAPI.CrossCutting.Enumerators
 {
-    public enum StatesEnum
+    public static class StatesEnum
     {
-        Active = 1,
-        Inactive = 2,
-        Approved = 3,
-        Rejected = 4,
-        Review = 5,
-        Pending = 6,
-        Success = 7, 
-        Failure = 8,
+        public const string Active = "Active";
+        public const string Inactive = "Inactive";
+        public const string Approved = "Approved";
+        public const string Rejected = "Rejected";
+        public const string Review = "Review";
+        public const string Pending = "Pending";
+        public const string Success = "Success";
+        public const string Failure = "Failure";
     }
 }
