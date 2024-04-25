@@ -103,4 +103,4 @@ api/auht/register
 }
 
 ```
-# EL field "amounts" es la lista de las transacciones
+E campo "amounts" es la lista de las transacciones
