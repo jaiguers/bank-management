@@ -28,7 +28,8 @@ namespace BankAPI.Controllers
         [Route("[action]/{id}")]
         public ActionResult GetCards(string id)
         {
-            var cards = cardService.GetCardByUserId(Guid.Parse(id));
+            var userId = Guid.Parse(id);
+            var cards = cardService.GetCardByUserId(userId);
 
             return StatusCode(StatusCodes.Status200OK, new JsonResponse
             {
@@ -50,7 +51,7 @@ namespace BankAPI.Controllers
                 return StatusCode(StatusCodes.Status200OK, new JsonResponse
                 {
                     Status = StatusCodes.Status200OK,
-                    Msg = "Tarjeta creada correctamente",
+                    Msg = $"Tarjeta creada correctamente con el numero {card.CardNumber}",
                     Result = card,
                 });
             }
@@ -75,8 +76,6 @@ namespace BankAPI.Controllers
             try
             {
                 var card = cardService.ActivateCard(id);
-
-                //cardService.UpdateCard(card);
 
                 return StatusCode(StatusCodes.Status200OK, new JsonResponse
                 {

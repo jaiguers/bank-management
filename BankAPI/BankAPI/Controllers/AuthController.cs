@@ -2,11 +2,9 @@
 using BankAPI.CrossCutting.Authentication;
 using BankAPI.CrossCutting.Enumerators;
 using BankAPI.Domain.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BankAPI.Controllers
 {
@@ -18,7 +16,6 @@ namespace BankAPI.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<ApplicationRole> roleManager;
         private readonly IJwtProvider jwtProvider;
-        private readonly IPasswordHasher passwordHasher;
 
         public AuthController(UserManager<ApplicationUser> userMana, RoleManager<ApplicationRole> rolMana, IJwtProvider jwtProv)
         {

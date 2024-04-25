@@ -1,4 +1,6 @@
-﻿namespace BankAPI.CrossCutting.AppModelDtos
+﻿using BankAPI.Domain.Models;
+
+namespace BankAPI.CrossCutting.AppModelDtos
 {
     public class AmountDTO
     {
@@ -10,6 +12,9 @@
         public string Reference { get; set; }
         public string TaxRate { get; set; }
         public string Concept { get; set; }
+        public string BankId { get; set; }
+        public string RecipientBankAccount { get; set; }
+        public DateTime CreatedAt { get; set; }
         public string Status { get; set; }
     }
 }

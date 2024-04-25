@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using BankAPI.CrossCutting.AppModelDtos;
+using BankAPI.CrossCutting.Enumerators;
 using BankAPI.Domain.Business.Interface;
 using BankAPI.Domain.Business.Profiles;
 using BankAPI.Domain.Models;
@@ -25,11 +26,14 @@ namespace BankAPI.Domain.Business.Services
 
             this.mapper = new Mapper(mapConfig);
         }
+
         public CardsDTO CreateTransaction(AmountDTO data)
         {
             var card = cardRepo.GetById(data.CardId);
             var amount = mapper.Map<Amount>(data);
+            amount.Status = StatesEnum.Success;
             amount.CreatedAt = DateTime.Now;
+
             if (card.amounts == null || card.amounts.Count == 0)
                 card.amounts = new List<Amount>();
 

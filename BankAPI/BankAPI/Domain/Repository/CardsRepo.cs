@@ -1,5 +1,7 @@
 ﻿using BankAPI.CrossCutting.Enumerators;
 using BankAPI.Domain.Models;
+using MongoDB.Bson;
+using SharpCompress.Common;
 using System.Linq;
 
 namespace BankAPI.Domain.Repository
@@ -49,12 +51,22 @@ namespace BankAPI.Domain.Repository
 
         public Cards? GetById(string id)
         {
-            return _dbContext.Cards.FirstOrDefault(j => j.Id.ToString() == id);
+            return _dbContext.Cards.Where(j => j.Id.ToString().Equals(id)).FirstOrDefault();
         }
 
         public List<Cards> GetByUserId(Guid id)
         {
-            return _dbContext.Cards.Where(j => j.UserId == id).ToList();
+            var newList = new List<Cards>();
+            var cardsList = _dbContext.Cards.Where(j => j.UserId == id);
+            if (cardsList != null)
+            {
+                foreach (var card in cardsList)
+                {
+                    card.amounts ??= new List<Amount>();
+                    newList.Add(card);
+                }
+            }
+            return newList;
         }
     }
 }

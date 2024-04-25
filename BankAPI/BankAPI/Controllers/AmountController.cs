@@ -4,6 +4,7 @@ using BankAPI.Domain.Business.Services;
 using BankAPI.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace BankAPI.Controllers
 {
@@ -27,6 +28,7 @@ namespace BankAPI.Controllers
         {
             try
             {
+                amount.Reference = "ref" + GetAmountReference(7);
                 var card = transactionService.CreateTransaction(amount);
 
                 return StatusCode(StatusCodes.Status200OK, new JsonResponse
@@ -57,6 +59,7 @@ namespace BankAPI.Controllers
         {
             try
             {
+                amount.Reference = "ref" + GetAmountReference(7);
                 var card = transactionService.CreateTransaction(amount);
 
                 return StatusCode(StatusCodes.Status200OK, new JsonResponse
@@ -78,6 +81,21 @@ namespace BankAPI.Controllers
                      }
                  );
             }
+        }
+
+
+        private static string GetAmountReference(int longitud)
+        {
+            const string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            StringBuilder sb = new();
+            Random rnd = new();
+
+            for (int i = 0; i < longitud; i++)
+            {
+                int indiceCaracter = rnd.Next(caracteres.Length);
+                sb.Append(caracteres[indiceCaracter]);
+            }
+            return sb.ToString();
         }
     }
 }

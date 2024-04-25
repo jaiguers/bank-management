@@ -37,6 +37,7 @@ namespace BankAPI.Domain.Models
                 entity.Property(j => j.CVV).HasElementName("cvc");
                 entity.Property(j => j.ExpirationDate).HasElementName("expiration_date");
                 entity.Property(j => j.Balance).HasElementName("balance");
+                entity.Property(j => j.Balance).HasElementName("balance");
                 entity.Property(j => j.CreatedAt).HasElementName("created_at");
                 entity.Property(j => j.ActivatedAt).HasElementName("activated_at");
                 entity.Property(j => j.UserId).HasElementName("user_id");

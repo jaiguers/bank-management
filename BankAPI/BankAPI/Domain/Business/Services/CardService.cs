@@ -36,6 +36,7 @@ namespace BankAPI.Domain.Business.Services
             entity.CardNumber = GetCardNumber(dto.Provider);
             entity.Balance = "0.0";
             entity.CreatedAt = DateTime.Now;
+            entity.ActivatedAt = DateTime.Now;
             entity.ExpirationDate = GetExpirationDate();
             entity.CVV = GetCVV();
             entity.Status = StatesEnum.Pending;
@@ -44,6 +45,7 @@ namespace BankAPI.Domain.Business.Services
             cardsRepo.Create(entity);
 
             var cardDto = mapper.Map<CardsDTO>(entity);
+            cardDto.Id = entity.Id.ToString();
 
             return cardDto;
         }
@@ -113,13 +115,13 @@ namespace BankAPI.Domain.Business.Services
 
             switch (type)
             {
-                case "Visa":
+                case CardProviderEnum.Visa:
                     carNumber = $"497{tempNumber}";
                     break;
-                case "Mastercard":
+                case CardProviderEnum.MasterCard:
                     carNumber = $"510{tempNumber}";
                     break;
-                case "Diners":
+                case CardProviderEnum.Diners:
                     carNumber = $"360{tempNumber}";
                     break;
             }
