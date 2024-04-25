@@ -21,7 +21,7 @@ api/auht/register
 }
 
 ```
-## Maneja base de datos MongoDB con entoty framework
+Maneja base de datos MongoDB con entoty framework
 ## Una tarjeta creada en la BD, se veria asi:
 ```
 {
